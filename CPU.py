@@ -34,7 +34,8 @@ class CPU:
         self.cache.set_cache_list(temp_list)
 
     def hitRate(self, instruction, instruction_count, bin_num, TBO):
-        block_num = self.cache.findBlockNum(bin_num, TBO)
+        block_num = self.cache.findBlockNum(bin_num[0:TBO[0]+TBO[1]], TBO)
+        print(block_num)
         if self.cache.get_cache_list()[block_num] == instruction:
             self.hits += 1
             self.set_hit_rate(self.hits / instruction_count)

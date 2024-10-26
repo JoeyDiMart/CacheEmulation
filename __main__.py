@@ -69,5 +69,7 @@ for j, i in enumerate(file, start=1):  # loop through starting from second line
         cpu.hitRate(instruction, j, bin_num, TBO)
         cache.toCache(instruction, bin_num, TBO)
 
-    if j % 100 == 0:
-        print(f"Instruction# - {j} \nH - {cpu.hit_rate:.3f}\n{cache}\n")
+    #if j % 100 == 0:
+    print(f"Hits - {cpu.hits} \nMisses - {j-cpu.hits}")
+    print(i)
+    print(f"Instruction# - {j} \nH - {cpu.hit_rate:.3f}\n{cache}\n")

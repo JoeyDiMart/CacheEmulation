@@ -40,13 +40,13 @@ class Cache:
     def findBlockNum(self, bin_num, TBO):  # this should be in Cache class
         place = 0
         block = 0
-        for k in bin_num[TBO[0]:TBO[0]+TBO[1]]:  # TBO[0] is tag, TBO[1] is block, iterate from end of tag to end of block
+        for k in bin_num[-1:-TBO[1]-1:-1]:  # TBO[0] is tag, TBO[1] is block, iterate from end of tag to end of block
             block += int(k) * (2**place)
             place += 1
         return block
 
     def toCache(self, instruction, bin_num, TBO):
-        block_num = self.findBlockNum(bin_num, TBO)
+        block_num = self.findBlockNum(bin_num[0:TBO[0]+TBO[1]], TBO)
         self.cache_list[block_num] = instruction
         return ""
 
