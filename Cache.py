@@ -15,8 +15,9 @@ class Cache:
         if cache_list is not None:
             self._cache_list = cache_list
         else:
-            self._cache_list = self._num_blocks * ["---"]
+            self._cache_list = self._num_blocks * ["---"] # set cache elements to all be '---'
 
+    # Getters nad Setters
     def get_num_blocks(self):
         return self._num_blocks
     def set_num_blocks(self, num_blocks):
@@ -45,13 +46,13 @@ class Cache:
             place += 1
         return block
 
-    def toCache(self, instruction, bin_num, TBO):
+    def toCache(self, instruction, bin_num, TBO): # Put the block into cache at the position block_num
         block_num = self.findBlockNum(bin_num[0:TBO[0]+TBO[1]], TBO)
         self.cache_list[block_num] = instruction
         return ""
 
     def __str__(self):
-        return " ".join(self.cache_list)
+        return " ".join(self.cache_list) # toString to print the cache
 
 
 

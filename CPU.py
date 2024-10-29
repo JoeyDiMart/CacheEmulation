@@ -12,6 +12,7 @@ class CPU:
         self._hit_rate = hit_rate
         self.cache = cache
 
+    # Getters and Setters
     def get_hits(self):
         return self._hits
     def set_hits(self, hits):
@@ -25,14 +26,16 @@ class CPU:
     hits = property(get_hits, set_hits)
     hit_rate = property(get_hit_rate, set_hit_rate)
 
-    def clearCache(self):
+    def clearCache(self): # Empty the cache to all be '---'
         self.cache.set_cache_list(['---'] * self.cache.num_blocks)
 
-    def deleteBlock(self, index):
+    def deleteBlock(self, index): # change the specified block to '---'
         temp_list = self.cache.get_cache_list()
         temp_list[index] = '---'
         self.cache.set_cache_list(temp_list)
 
+
+    # Calculate hit rate
     def hitRate(self, instruction, instruction_count, bin_num, TBO):
         block_num = self.cache.findBlockNum(bin_num[0:TBO[0]+TBO[1]], TBO)
         if self.cache.get_cache_list()[block_num] == instruction:
